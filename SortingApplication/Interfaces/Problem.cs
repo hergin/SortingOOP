@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SortingApplication
+namespace SortingApplication.Interfaces
 {
     public interface Problem
     {
