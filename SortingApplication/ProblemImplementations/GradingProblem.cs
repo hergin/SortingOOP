@@ -21,9 +21,9 @@ namespace SortingApplication
             studentRoster.Add("Meliha", 10);
         }
 
-        public List<int> getDataForAlgorithm()
+        public ProblemToAlgorithm getDataForAlgorithm()
         {
-            return studentRoster.Values.ToList<int>();
+            return new ProblemToAlgorithm(studentRoster.Values.ToList<int>());
         }
 
         public string getDesc()

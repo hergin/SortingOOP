@@ -9,7 +9,7 @@ namespace SortingApplication
 {
     class AnActualProblem : Problem
     {
-        public List<int> getDataForAlgorithm()
+        public ProblemToAlgorithm getDataForAlgorithm()
         {
             List<int> newList = new List<int>();
             newList.Add(15);
@@ -19,7 +19,7 @@ namespace SortingApplication
             newList.Add(2);
             newList.Add(6);
             newList.Add(33);
-            return newList;
+            return new ProblemToAlgorithm(newList);
         }
 
         public string getDesc()

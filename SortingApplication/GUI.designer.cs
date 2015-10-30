@@ -38,7 +38,7 @@ namespace SortingApplication
         {
             this.problemName.Text = theProblem.getName();
             this.problemDescription.Text = theProblem.getDesc();
-            this.passedToTheAlgorithm.Text =  string.Join(",",theProblem.getDataForAlgorithm().ToArray());
+            this.passedToTheAlgorithm.Text =  string.Join(",",theProblem.getDataForAlgorithm().getData().ToArray());
 
             this.algorithmName.Text = theAlgorithm.getName();
 

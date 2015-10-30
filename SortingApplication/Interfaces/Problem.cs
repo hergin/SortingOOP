@@ -10,6 +10,6 @@ namespace SortingApplication.Interfaces
     {
         String getName();
         String getDesc();
-        List<int> getDataForAlgorithm();
+        ProblemToAlgorithm getDataForAlgorithm();
     }
 }

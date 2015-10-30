@@ -29,9 +29,9 @@ namespace SortingApplication
             return algoParams;
         }
 
-        public List<int> sort(List<int> theList)
+        public List<int> sort(ProblemToAlgorithm data)
         {
-            int[] arrayEquivalent = theList.ToArray<int>();
+            int[] arrayEquivalent = data.getData().ToArray<int>();
             Array.Sort(arrayEquivalent);
             return new List<int>(arrayEquivalent);
         }

@@ -8,7 +8,7 @@ namespace SortingApplication.Interfaces
 {
     public interface SortAlgorithm
     {
-        List<int> sort(List<int> theList);
+        List<int> sort(ProblemToAlgorithm data);
         Dictionary<String, String> getParams();
         void updateParam(String pName, String pVal);
         String getName();
