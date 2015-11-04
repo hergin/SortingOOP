@@ -12,7 +12,7 @@ namespace SortingApplication
         public ProblemToAlgorithm getDataForAlgorithm()
         {
             List<int> newList = new List<int>();
-            newList.Add(15);
+            newList.Add(15); 
             newList.Add(5);
             newList.Add(20);
             newList.Add(1);
