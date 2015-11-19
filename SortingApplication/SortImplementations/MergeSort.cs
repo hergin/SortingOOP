@@ -12,6 +12,8 @@ namespace SortingApplication
 
         Dictionary<String, String> algoParams = new Dictionary<String, String>();
 
+        NumberSwapListener numberSwapListener;
+
         public MergeSort()
         {
             algoParams["Param1"] = "5";
@@ -23,6 +25,11 @@ namespace SortingApplication
             return "Merge Sort";
         }
 
+        public void setNumberSwapListener(NumberSwapListener n)
+        {
+            numberSwapListener = n;
+        }
+
         public Dictionary<String, String> getParams()
         {
             return algoParams;
@@ -31,7 +38,29 @@ namespace SortingApplication
         public List<int> sort(ProblemToAlgorithm data)
         {
             int[] arrayEquivalent = data.getData().ToArray<int>();
-            Array.Sort(arrayEquivalent);
+
+            for (int i = 0; i < arrayEquivalent.Length; i++)
+            {
+                for (int j = i + 1; j < arrayEquivalent.Length; j++)
+                {
+                    if (arrayEquivalent[j] > arrayEquivalent[i])
+                    {
+                        if (numberSwapListener != null)
+                            numberSwapListener.onNumberSwapped(j, i);
+
+                        //swap with temp
+                        //int temp = arrayEquivalent[j];
+                        //arrayEquivalent[j] = arrayEquivalent[i];
+                        //arrayEquivalent[i] = temp;
+
+                        //swap without temp
+                        arrayEquivalent[j] = arrayEquivalent[j] ^ arrayEquivalent[i];
+                        arrayEquivalent[i] = arrayEquivalent[j] ^ arrayEquivalent[i];
+                        arrayEquivalent[j] = arrayEquivalent[j] ^ arrayEquivalent[i];
+                    }
+                }
+            }
+            //Array.Sort(arrayEquivalent);
             return new List<int>(arrayEquivalent);
         }
 

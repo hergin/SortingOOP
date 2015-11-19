@@ -52,6 +52,7 @@
     <Compile Include="GUI.designer.cs">
       <DependentUpon>GUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\NumberSwapListener.cs" />
     <Compile Include="Interfaces\Problem.cs" />
     <Compile Include="Interfaces\ProblemToAlgorithm.cs" />
     <Compile Include="Interfaces\SortAlgorithm.cs" />

@@ -23,7 +23,7 @@ namespace SortingApplication
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI(gp,qs));
+            Application.Run(new GUI(gp,ms));
         }
     }
 }

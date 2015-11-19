@@ -11,7 +11,7 @@ using SortingApplication.Interfaces;
 
 namespace SortingApplication
 {
-    public partial class GUI : Form
+    public partial class GUI : Form,NumberSwapListener
     {
         private SortAlgorithm theAlgorithm;
         private Problem theProblem;
@@ -20,6 +20,7 @@ namespace SortingApplication
         {
             theProblem = p;
             theAlgorithm = s;
+            theAlgorithm.setNumberSwapListener(this);
             InitializeComponent();
             initializeGUI();
         }
@@ -41,8 +42,13 @@ namespace SortingApplication
         {
             clearOldStuff();
             theAlgorithm = (SortAlgorithm)((ToolStripMenuItem)sender).Tag;
+            theAlgorithm.setNumberSwapListener(this);
             initializeGUI();
         }
-        
+
+        public void onNumberSwapped(int x, int y)
+        {
+            Console.WriteLine("These indices are swapped: ["+x+"] <-> ["+y+"]");
+        }
     }
 }

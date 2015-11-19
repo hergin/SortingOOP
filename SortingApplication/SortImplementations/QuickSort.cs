@@ -10,6 +10,7 @@ namespace SortingApplication
     class QuickSort : SortAlgorithm
     {
         Dictionary<String, String> algoParams = new Dictionary<String, String>();
+        NumberSwapListener numberSwapListener;
 
         public QuickSort()
         {
@@ -27,6 +28,11 @@ namespace SortingApplication
         public Dictionary<string, string> getParams()
         {
             return algoParams;
+        }
+
+        public void setNumberSwapListener(NumberSwapListener n)
+        {
+            numberSwapListener = n;
         }
 
         public List<int> sort(ProblemToAlgorithm data)
