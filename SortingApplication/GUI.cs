@@ -20,7 +20,7 @@ namespace SortingApplication
         {
             theProblem = p;
             theAlgorithm = s;
-            theAlgorithm.setNumberSwapListener(this);
+            //theAlgorithm.setNumberSwapListener(this);
             InitializeComponent();
             initializeGUI();
         }
@@ -42,7 +42,7 @@ namespace SortingApplication
         {
             clearOldStuff();
             theAlgorithm = (SortAlgorithm)((ToolStripMenuItem)sender).Tag;
-            theAlgorithm.setNumberSwapListener(this);
+            //theAlgorithm.setNumberSwapListener(this);
             initializeGUI();
         }
 

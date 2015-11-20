@@ -21,6 +21,9 @@ namespace SortingApplication
             SortAlgorithm ms = new MergeSort();
             QuickSort qs = new QuickSort();
 
+            SortingVisualiser visualiser = new SortingVisualiser(gp.getDataForAlgorithm().getData());
+            ms.setNumberSwapListener(visualiser);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GUI(gp,ms));
