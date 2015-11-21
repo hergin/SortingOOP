@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace SortingApplication
 {
-    class MergeSort : SortAlgorithm
+    class MergeSort : SortImplementations.AbstractAlgorithm
     {
-
-        Dictionary<String, String> algoParams = new Dictionary<String, String>();
-
-        NumberSwapListener numberSwapListener;
 
         public MergeSort()
         {
@@ -20,22 +16,12 @@ namespace SortingApplication
             algoParams["Param2"] = "paramVal";
         }
 
-        public string getName()
+        public override string getName()
         {
             return "Merge Sort";
         }
 
-        public void setNumberSwapListener(NumberSwapListener n)
-        {
-            numberSwapListener = n;
-        }
-
-        public Dictionary<String, String> getParams()
-        {
-            return algoParams;
-        }
-
-        public List<int> sort(ProblemToAlgorithm data)
+        public override List<int> sort(ProblemToAlgorithm data)
         {
             int[] arrayEquivalent = data.getData().ToArray<int>();
 
@@ -63,10 +49,6 @@ namespace SortingApplication
             //Array.Sort(arrayEquivalent);
             return new List<int>(arrayEquivalent);
         }
-
-        public void updateParam(string pName, string pVal)
-        {
-            algoParams[pName] = pVal;
-        }
+        
     }
 }

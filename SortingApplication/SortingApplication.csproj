@@ -60,6 +60,7 @@
     <Compile Include="ProblemImplementations\GradingProblem.cs" />
     <Compile Include="ProjectMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortImplementations\AbstractAlgorithm.cs" />
     <Compile Include="SortImplementations\MergeSort.cs" />
     <Compile Include="SortImplementations\QuickSort.cs" />
     <Compile Include="SortingVisualiser.cs" />
