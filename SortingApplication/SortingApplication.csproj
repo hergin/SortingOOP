@@ -60,6 +60,12 @@
     <Compile Include="ProblemImplementations\GradingProblem.cs" />
     <Compile Include="ProjectMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortAnimatorGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SortAnimatorGUI.Designer.cs">
+      <DependentUpon>SortAnimatorGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="SortImplementations\AbstractAlgorithm.cs" />
     <Compile Include="SortImplementations\MergeSort.cs" />
     <Compile Include="SortImplementations\QuickSort.cs" />
@@ -76,6 +82,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SortAnimatorGUI.resx">
+      <DependentUpon>SortAnimatorGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

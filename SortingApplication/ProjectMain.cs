@@ -21,12 +21,17 @@ namespace SortingApplication
             SortAlgorithm ms = new MergeSort();
             QuickSort qs = new QuickSort();
 
-            SortingVisualiser visualiser = new SortingVisualiser(gp.getDataForAlgorithm().getData());
-            ms.setNumberSwapListener(visualiser);
+            //SortingVisualiser visualiser = new SortingVisualiser(gp.getDataForAlgorithm().getData());
+            //ms.setNumberSwapListener(visualiser);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI(gp,ms));
+
+            SortAnimatorGUI sortAnimator = new SortAnimatorGUI(ap.getDataForAlgorithm().getData().ToArray());
+            ms.setNumberSwapListener(sortAnimator);
+            sortAnimator.Show();
+
+            Application.Run(new GUI(ap,ms));
         }
     }
 }
