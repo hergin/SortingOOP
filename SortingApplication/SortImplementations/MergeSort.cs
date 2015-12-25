@@ -12,8 +12,11 @@ namespace SortingApplication
 
         public MergeSort()
         {
-            algoParams["Param1"] = "5";
-            algoParams["Param2"] = "paramVal";
+            algoParams["Pivot"] = new Model.Parameter("Pivot", "middle", null, "middle");
+            algoParams["Speed"] = new Model.Parameter("Speed", "fast", new List<Object>() { "fast", "middle", "slow" }, "middle");
+            algoParams["greeting"] = new Model.Parameter("greeting", "hi", null, "hi");
+            algoParams["mac value"] = new Model.Parameter("mac value", 3.4, new List<Object> { 1.0, 2.0, 3.4, 3.6, 4.0, 5.0 }, 5.0);
+            algoParams["Param2"] = new Model.Parameter("Param2", true, new List<Object>() { true, false }, true);
         }
 
         public override string getName()

@@ -12,10 +12,8 @@ namespace SortingApplication
    
         public QuickSort()
         {
-            algoParams["Pivot"] = "middle";
-            algoParams["Speed"] = "bla bla";
-            algoParams["greeting"] = "hello";
-            algoParams["mac value"] = "33";
+            algoParams["Param1"] = new Model.Parameter("Param1", 5, new List<Object>() { 1, 2, 3, 4, 5 }, 3);
+            algoParams["Param2"] = new Model.Parameter("Param2", true, new List<Object>() { true, false }, true);
         }
 
         public override string getName()

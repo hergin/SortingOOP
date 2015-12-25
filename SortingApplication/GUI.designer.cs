@@ -55,16 +55,47 @@ namespace SortingApplication
                 concreteParam.Text = item.Key;
                 this.Controls.Add(concreteParam);
 
-                var concreteTextbox = new System.Windows.Forms.TextBox();
-                concreteTextbox.Location = new System.Drawing.Point(201, location - 3);
-                concreteTextbox.Name = item.Key + "_Val";
-                concreteTextbox.Size = new System.Drawing.Size(100, 20);
-                concreteTextbox.Tag = item.Key;
-                concreteTextbox.TabIndex = 7;
-                concreteTextbox.Text = item.Value;
-                concreteTextbox.TextChanged += textBox_changed;
-                this.Controls.Add(concreteTextbox);
-
+                // IF there are no possible values, it is just a textbox
+                if(item.Value.getPossibleValues() == null)
+                {
+                    var concreteTextbox = new System.Windows.Forms.TextBox();
+                    concreteTextbox.Location = new System.Drawing.Point(201, location - 3);
+                    concreteTextbox.Name = item.Key + "_Val";
+                    concreteTextbox.Size = new System.Drawing.Size(100, 20);
+                    concreteTextbox.Tag = item.Value;
+                    concreteTextbox.TabIndex = 7;
+                    concreteTextbox.Text = (String)item.Value.getID();
+                    concreteTextbox.TextChanged += textBox_changed;
+                    this.Controls.Add(concreteTextbox);
+                }
+                // IF possible values contain 'true', it is a checkbox
+                else if(item.Value.getPossibleValues().Contains(true))
+                {
+                    var concreteCheckbox = new System.Windows.Forms.CheckBox();
+                    concreteCheckbox.Name = item.Key + "_Val";
+                    concreteCheckbox.Location = new System.Drawing.Point(201, location - 3);
+                    concreteCheckbox.Size = new System.Drawing.Size(100, 20);
+                    concreteCheckbox.Checked = (bool)item.Value.getValue();
+                    concreteCheckbox.Tag = item.Value;
+                    concreteCheckbox.CheckedChanged += checkbox_changed;
+                    this.Controls.Add(concreteCheckbox);
+                }
+                // ELSE it is a combobox
+                else
+                {
+                    var concreteCombobox = new System.Windows.Forms.ComboBox();
+                    concreteCombobox.FormattingEnabled = true;
+                    concreteCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                    concreteCombobox.Items.AddRange(item.Value.getPossibleValues().ToArray());
+                    concreteCombobox.SelectedItem = item.Value.getValue();
+                    concreteCombobox.Location = new System.Drawing.Point(201, location - 3);
+                    concreteCombobox.Name = item.Key + "_Val";
+                    concreteCombobox.Tag = item.Value;
+                    concreteCombobox.Size = new System.Drawing.Size(100, 20);
+                    concreteCombobox.SelectedValueChanged += ConcreteCombobox_SelectedValueChanged;
+                    concreteCombobox.TabIndex = 12;
+                    this.Controls.Add(concreteCombobox);
+                }
                 location += step;
             }
 
@@ -72,11 +103,22 @@ namespace SortingApplication
 
         }
 
+        private void ConcreteCombobox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var tb = ((System.Windows.Forms.ComboBox)sender);
+            theAlgorithm.updateParam(((Model.Parameter)tb.Tag).getID(), tb.SelectedItem);
+        }
+
+        private void checkbox_changed(object sender, EventArgs e)
+        {
+            var tb = ((System.Windows.Forms.CheckBox)sender);
+            theAlgorithm.updateParam(((Model.Parameter)tb.Tag).getID(), tb.Checked);
+        }
+
         private void textBox_changed(object sender, EventArgs e)
         {
             var tb = ((System.Windows.Forms.TextBox)sender);
-            theAlgorithm.updateParam((String)tb.Tag,tb.Text);
-            //Console.WriteLine(string.Join(",",theAlgorithm.getParams().ToArray()));
+            theAlgorithm.updateParam(((Model.Parameter)tb.Tag).getID(),tb.Text);
         }
 
         #region Windows Form Designer generated code

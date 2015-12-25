@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\Problem.cs" />
     <Compile Include="Interfaces\ProblemToAlgorithm.cs" />
     <Compile Include="Interfaces\SortAlgorithm.cs" />
+    <Compile Include="Model\Parameter.cs" />
     <Compile Include="ProblemImplementations\AnActualProblem.cs" />
     <Compile Include="ProblemImplementations\GradingProblem.cs" />
     <Compile Include="ProjectMain.cs" />

@@ -24,7 +24,7 @@ namespace SortingApplication
             
 
             //SortingVisualiser visualiser = new SortingVisualiser(ap.getDataForAlgorithm().getData());
-            //ms.setNumberSwapListener(visualiser);
+            //qs.setNumberSwapListener(visualiser);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

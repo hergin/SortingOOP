@@ -9,12 +9,12 @@ namespace SortingApplication.SortImplementations
 {
     abstract class AbstractAlgorithm : Interfaces.SortAlgorithm
     {
-        protected Dictionary<String, String> algoParams = new Dictionary<String, String>();
+        protected Dictionary<String, Model.Parameter> algoParams = new Dictionary<String, Model.Parameter>();
         protected NumberSwapListener numberSwapListener;
 
         public abstract string getName();
 
-        public Dictionary<string, string> getParams()
+        public Dictionary<string, Model.Parameter> getParams()
         {
             return algoParams;
         }
@@ -26,9 +26,9 @@ namespace SortingApplication.SortImplementations
 
         public abstract List<int> sort(ProblemToAlgorithm data);
 
-        public void updateParam(string pName, string pVal)
+        public void updateParam(string pName, Object pVal)
         {
-            algoParams[pName] = pVal;
+            algoParams[pName].setValue(pVal);
         }
     }
 }
