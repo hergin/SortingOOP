@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SortingApplication.Interfaces;
 
 namespace SortingApplication
 {
-    public partial class SortAnimatorGUI : Form, Interfaces.NumberSwapListener
+    public partial class SortAnimatorGUI : Form, Interfaces.NumberSwapListener, Interfaces.ProblemChangedListener
     {
 
         Label[] theListLabels;
@@ -20,14 +21,20 @@ namespace SortingApplication
 
         Timer timer = new Timer();
 
-        public SortAnimatorGUI(int[] theList)
+        public SortAnimatorGUI()
         {
             InitializeComponent();
 
+            initializeSortAnimator(new List<Tuple<string, int>>());
+
+        }
+
+        private void initializeSortAnimator(List<Tuple<String, int>> theList)
+        {
             events = new LinkedList<Tuple<int, int>>();
-            theListLabels = new Label[theList.Length];
+            theListLabels = new Label[theList.Count];
             int nextX = 37;
-            for (int i = 0; i < theList.Length; i++)
+            for (int i = 0; i < theList.Count; i++)
             {
                 Label tempLabel = new System.Windows.Forms.Label();
                 tempLabel.AutoSize = true;
@@ -36,55 +43,35 @@ namespace SortingApplication
                 tempLabel.Name = "label" + i;
                 tempLabel.Size = new System.Drawing.Size(20, 20);
                 tempLabel.TabIndex = i;
-                tempLabel.Text = theList[i] + "";
+                tempLabel.Text = theList[i].Item2 + "";
                 this.Controls.Add(tempLabel);
                 theListLabels[i] = tempLabel;
             }
 
+            this.manualButton.Text = "Select next from " + events.Count + " number swap events";
+
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = 1000;
-
-        }
-
-        void timer_Tick(object sender, EventArgs e)
-        {
-
-            if (events.Count == 0)
-            {
-                timer.Stop();
-                return;
-            }
-
-            clearLabelBackgrounds();
-
-            if (selectMode)
-            {
-                selectNext();
-            }
-            else
-            {
-                swapNext();
-            }
         }
 
         private void selectNext()
         {
+            this.selectMode = false;
             Tuple<int, int> nextEvent = events.First();
             theListLabels[nextEvent.Item1].BackColor = Color.Gold;
             theListLabels[nextEvent.Item2].BackColor = Color.Gold;
-            this.button1.Text = "Swap selected tuple!";
-            this.selectMode = false;
+            this.manualButton.Text = "Swap selected tuple!";
         }
 
         private void swapNext()
         {
+            this.selectMode = true;
             Tuple<int, int> nextEvent = events.First();
-            this.button1.Text = "Select next from " + events.Count + " events";
+            this.manualButton.Text = "Select next from " + events.Count + " events";
             String temp = theListLabels[nextEvent.Item1].Text;
             theListLabels[nextEvent.Item1].Text = theListLabels[nextEvent.Item2].Text;
             theListLabels[nextEvent.Item2].Text = temp;
             events.RemoveFirst();
-            this.selectMode = true;
         }
 
         private void clearLabelBackgrounds()
@@ -99,14 +86,14 @@ namespace SortingApplication
         public void onNumberSwapped(int x, int y)
         {
             events.AddLast(new Tuple<int, int>(x, y));
-            this.button1.Text = "Select next from " + events.Count + " number swap events";
+            this.manualButton.Text = "Select next from " + events.Count + " number swap events";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void manualButton_Click(object sender, EventArgs e)
         {
             if (events.Count == 0)
             {
-                this.button1.Text = "No events";
+                this.manualButton.Text = "No events";
                 return;
             }
 
@@ -122,10 +109,43 @@ namespace SortingApplication
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        void timer_Tick(object sender, EventArgs e)
+        {
+
+            if (events.Count == 0)
+            {
+                timer.Stop();
+                this.manualButton.Text = "No events";
+                return;
+            }
+
+            clearLabelBackgrounds();
+
+            if (selectMode)
+            {
+                selectNext();
+            }
+            else
+            {
+                swapNext();
+            }
+        }
+
+        private void timedButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = true;
-            timer.Start();
+           // timer.Start();
+        }
+
+        public void onProblemChanged(ProblemToAlgorithm data)
+        {
+
+            foreach (Label l in theListLabels)
+            {
+                this.Controls.Remove(l);
+            }
+
+            initializeSortAnimator(data.getData());
         }
     }
 }

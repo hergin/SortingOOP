@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using SortingApplication.Model;
 
 namespace SortingApplication
 {
@@ -38,7 +39,7 @@ namespace SortingApplication
         {
             this.problemName.Text = theProblem.getName();
             this.problemDescription.Text = theProblem.getDesc();
-            this.passedToTheAlgorithm.Text =  string.Join(",",theProblem.getDataForAlgorithm().getData().ToArray());
+            this.passedToTheAlgorithm.Text = theProblem.getDataForAlgorithm().ToString();
 
             this.algorithmName.Text = theAlgorithm.getName();
 
@@ -129,10 +130,6 @@ namespace SortingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            SortingApplication.AnActualProblem anActualProblem1 = new SortingApplication.AnActualProblem();
-            SortingApplication.GradingProblem gradingProblem1 = new SortingApplication.GradingProblem();
-            SortingApplication.QuickSort quickSort1 = new SortingApplication.QuickSort();
-            SortingApplication.MergeSort mergeSort1 = new SortingApplication.MergeSort();
             this.problemName = new System.Windows.Forms.Label();
             this.problemDescription = new System.Windows.Forms.Label();
             this.passedToAlgorithmLabel = new System.Windows.Forms.Label();
@@ -279,33 +276,29 @@ namespace SortingApplication
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(172, 22);
-            this.toolStripMenuItem3.Tag = anActualProblem1;
             this.toolStripMenuItem3.Text = "An actual problem";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.problemMenuClicked);
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.actualProblemMenuClicked);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(172, 22);
-            this.toolStripMenuItem4.Tag = gradingProblem1;
             this.toolStripMenuItem4.Text = "Grading students";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.problemMenuClicked);
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.gradingProblemMenuClicked);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(131, 22);
-            this.toolStripMenuItem5.Tag = quickSort1;
             this.toolStripMenuItem5.Text = "Quick sort";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.algorithmMenuClicked);
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.quickSortMenuClicked);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
             this.toolStripMenuItem6.Size = new System.Drawing.Size(131, 22);
-            this.toolStripMenuItem6.Tag = mergeSort1;
             this.toolStripMenuItem6.Text = "Merge sort";
-            this.toolStripMenuItem6.Click += new System.EventHandler(this.algorithmMenuClicked);
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.mergeSortMenuClicked);
             // 
             // GUI
             // 

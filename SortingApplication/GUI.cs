@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SortingApplication.Interfaces;
+using SortingApplication.Model;
 
 namespace SortingApplication
 {
@@ -15,34 +16,70 @@ namespace SortingApplication
     {
         private SortAlgorithm theAlgorithm;
         private Problem theProblem;
+        ProblemChangedListener problemChangedListener;
 
-        public GUI(Problem p,SortAlgorithm s)
+        public GUI(SortAlgorithm s)
         {
-            theProblem = p;
+            theProblem = ProblemFactory.createActualProblem();
             theAlgorithm = s;
-            //theAlgorithm.setNumberSwapListener(this);
             InitializeComponent();
             initializeGUI();
         }
 
+        public void setProblemChangedListener(ProblemChangedListener pcl)
+        {
+            this.problemChangedListener = pcl;
+            if (problemChangedListener != null)
+            {
+                problemChangedListener.onProblemChanged(theProblem.getDataForAlgorithm());
+            }
+        }
+
         private void solveButton_Click(object sender, EventArgs e)
         {
-            this.resultText.Text = string.Join(",", theAlgorithm.sort(theProblem.getDataForAlgorithm()));
+            theAlgorithm.sort(theProblem.getDataForAlgorithm());
+            this.resultText.Text = theProblem.getDataForAlgorithm().ToString();
             this.solvedLabel.Text = "I solved " + theProblem.getName() + " using " + theAlgorithm.getName() + ".";
         }
 
-        private void problemMenuClicked(object sender, EventArgs e)
+        private void actualProblemMenuClicked(object sender, EventArgs e)
         {
             clearOldStuff();
-            theProblem = (Problem)((ToolStripMenuItem)sender).Tag;
+            theProblem = ProblemFactory.createActualProblem();
+            if(problemChangedListener!=null)
+            {
+                problemChangedListener.onProblemChanged(theProblem.getDataForAlgorithm());
+            }
             initializeGUI();
         }
 
-        private void algorithmMenuClicked(object sender, EventArgs e)
+        private void gradingProblemMenuClicked(object sender, EventArgs e)
         {
             clearOldStuff();
-            theAlgorithm = (SortAlgorithm)((ToolStripMenuItem)sender).Tag;
-            //theAlgorithm.setNumberSwapListener(this);
+            theProblem = ProblemFactory.createGradingProblem();
+            if (problemChangedListener != null)
+            {
+                problemChangedListener.onProblemChanged(theProblem.getDataForAlgorithm());
+            }
+            initializeGUI();
+        }
+
+
+        private void quickSortMenuClicked(object sender, EventArgs e)
+        {
+            clearOldStuff();
+            NumberSwapListener old = theAlgorithm.getNumberSwapListener();
+            theAlgorithm = new QuickSort();
+            theAlgorithm.setNumberSwapListener(old);
+            initializeGUI();
+        }
+
+        private void mergeSortMenuClicked(object sender, EventArgs e)
+        {
+            clearOldStuff();
+            NumberSwapListener old = theAlgorithm.getNumberSwapListener();
+            theAlgorithm = new MergeSort();
+            theAlgorithm.setNumberSwapListener(old);
             initializeGUI();
         }
 

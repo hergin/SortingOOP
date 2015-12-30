@@ -14,6 +14,11 @@ namespace SortingApplication.SortImplementations
 
         public abstract string getName();
 
+        public NumberSwapListener getNumberSwapListener()
+        {
+            return numberSwapListener;
+        }
+
         public Dictionary<string, Model.Parameter> getParams()
         {
             return algoParams;
@@ -24,7 +29,7 @@ namespace SortingApplication.SortImplementations
             this.numberSwapListener = n;
         }
 
-        public abstract List<int> sort(ProblemToAlgorithm data);
+        public abstract void sort(ProblemToAlgorithm data);
 
         public void updateParam(string pName, Object pVal)
         {

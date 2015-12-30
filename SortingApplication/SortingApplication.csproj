@@ -54,9 +54,11 @@
     </Compile>
     <Compile Include="Interfaces\NumberSwapListener.cs" />
     <Compile Include="Interfaces\Problem.cs" />
+    <Compile Include="Interfaces\ProblemChangedListener.cs" />
     <Compile Include="Interfaces\ProblemToAlgorithm.cs" />
     <Compile Include="Interfaces\SortAlgorithm.cs" />
     <Compile Include="Model\Parameter.cs" />
+    <Compile Include="Model\ProblemFactory.cs" />
     <Compile Include="ProblemImplementations\AnActualProblem.cs" />
     <Compile Include="ProblemImplementations\GradingProblem.cs" />
     <Compile Include="ProjectMain.cs" />

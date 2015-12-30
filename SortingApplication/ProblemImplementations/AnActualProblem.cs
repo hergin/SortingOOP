@@ -9,16 +9,23 @@ namespace SortingApplication
 {
     class AnActualProblem : Problem
     {
+        List<Tuple<String, int>> newList = new List<Tuple<string, int>>();
+
+        public AnActualProblem()
+        {
+            newList.Add(new Tuple<string, int>("", 20));
+            newList.Add(new Tuple<string, int>("", 5));
+            newList.Add(new Tuple<string, int>("", 7));
+            newList.Add(new Tuple<string, int>("", 10));
+            newList.Add(new Tuple<string, int>("", 30));
+            newList.Add(new Tuple<string, int>("", 60));
+            newList.Add(new Tuple<string, int>("", 55));
+            newList.Add(new Tuple<string, int>("", 2));
+            newList.Add(new Tuple<string, int>("", 13));
+        }
+
         public ProblemToAlgorithm getDataForAlgorithm()
         {
-            List<int> newList = new List<int>();
-            newList.Add(15); 
-            newList.Add(5);
-            newList.Add(20);
-            newList.Add(1);
-            newList.Add(2);
-            newList.Add(6);
-            newList.Add(33);
             return new ProblemToAlgorithm(newList);
         }
 

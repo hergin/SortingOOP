@@ -24,33 +24,26 @@ namespace SortingApplication
             return "Merge Sort";
         }
 
-        public override List<int> sort(ProblemToAlgorithm data)
+        public override void sort(ProblemToAlgorithm data)
         {
-            int[] arrayEquivalent = data.getData().ToArray<int>();
 
-            for (int i = 0; i < arrayEquivalent.Length; i++)
+            for (int i = 0; i < data.getData().Count; i++)
             {
-                for (int j = i + 1; j < arrayEquivalent.Length; j++)
+                for (int j = i + 1; j < data.getData().Count; j++)
                 {
-                    if (arrayEquivalent[j] > arrayEquivalent[i])
+                    if (data.getData()[j].Item2 > data.getData()[i].Item2)
                     {
                         if (numberSwapListener != null)
                             numberSwapListener.onNumberSwapped(j, i);
 
-                        //swap with temp
-                        //int temp = arrayEquivalent[j];
-                        //arrayEquivalent[j] = arrayEquivalent[i];
-                        //arrayEquivalent[i] = temp;
-
-                        //swap without temp
-                        arrayEquivalent[j] = arrayEquivalent[j] ^ arrayEquivalent[i];
-                        arrayEquivalent[i] = arrayEquivalent[j] ^ arrayEquivalent[i];
-                        arrayEquivalent[j] = arrayEquivalent[j] ^ arrayEquivalent[i];
+                        Tuple<String, int> temp = data.getData()[j];
+                        data.getData().RemoveAt(j);
+                        data.getData().Insert(j, data.getData()[i]);
+                        data.getData().RemoveAt(i);
+                        data.getData().Insert(i, temp);
                     }
                 }
             }
-            //Array.Sort(arrayEquivalent);
-            return new List<int>(arrayEquivalent);
         }
         
     }

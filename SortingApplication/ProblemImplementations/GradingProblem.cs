@@ -10,20 +10,20 @@ namespace SortingApplication
     class GradingProblem : Problem
     {
 
-        Dictionary<String, int> studentRoster = new Dictionary<string, int>();
+        List<Tuple<String, int>> studentRoster = new List<Tuple<string, int>>();
 
         public GradingProblem()
         {
-            studentRoster.Add("Ali", 20);
-            studentRoster.Add("Ahmet", 30);
-            studentRoster.Add("Ayse", 22);
-            studentRoster.Add("Mert", 55);
-            studentRoster.Add("Meliha", 10);
+            studentRoster.Add(new Tuple<string, int>("Ali", 20));
+            studentRoster.Add(new Tuple<string, int>("Ahmet", 30));
+            studentRoster.Add(new Tuple<string, int>("Ayse", 22));
+            studentRoster.Add(new Tuple<string, int>("Mert", 55));
+            studentRoster.Add(new Tuple<string, int>("Meliha", 10));
         }
 
         public ProblemToAlgorithm getDataForAlgorithm()
         {
-            return new ProblemToAlgorithm(studentRoster.Values.ToList<int>());
+            return new ProblemToAlgorithm(studentRoster);
         }
 
         public string getDesc()

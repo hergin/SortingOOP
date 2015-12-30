@@ -1,4 +1,5 @@
 ﻿using SortingApplication.Interfaces;
+using SortingApplication.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,10 @@ namespace SortingApplication
         [STAThread]
         static void Main()
         {
-            // problems
-            AnActualProblem ap = new AnActualProblem();
-            GradingProblem gp = new GradingProblem();
 
             // Sorting algorithms
             SortAlgorithm ms = new MergeSort();
-            QuickSort qs = new QuickSort();
-
+            SortAlgorithm qs = new QuickSort();
             
 
             //SortingVisualiser visualiser = new SortingVisualiser(ap.getDataForAlgorithm().getData());
@@ -29,11 +26,15 @@ namespace SortingApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            SortAnimatorGUI sortAnimator = new SortAnimatorGUI(ap.getDataForAlgorithm().getData().ToArray());
-            ms.setNumberSwapListener(sortAnimator);
+
+            SortAnimatorGUI sortAnimator = new SortAnimatorGUI();
+            qs.setNumberSwapListener(sortAnimator);
             sortAnimator.Show();
 
-            Application.Run(new GUI(ap,ms));
+            GUI sortGui = new GUI(qs);
+            sortGui.setProblemChangedListener(sortAnimator);
+
+            Application.Run(sortGui);
         }
     }
 }
