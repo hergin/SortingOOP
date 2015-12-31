@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SortingApplication.Interfaces;
+using SortingApplication.ProblemImplementations;
 
 namespace SortingApplication.Model
 {
@@ -18,6 +19,11 @@ namespace SortingApplication.Model
         public static Problem createGradingProblem()
         {
             return new GradingProblem();
+        }
+
+        public static Problem createTestProblem()
+        {
+            return new TestProblem();
         }
 
     }

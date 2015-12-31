@@ -61,6 +61,7 @@
     <Compile Include="Model\ProblemFactory.cs" />
     <Compile Include="ProblemImplementations\AnActualProblem.cs" />
     <Compile Include="ProblemImplementations\GradingProblem.cs" />
+    <Compile Include="ProblemImplementations\TestProblem.cs" />
     <Compile Include="ProjectMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortAnimatorGUI.cs">

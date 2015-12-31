@@ -87,5 +87,16 @@ namespace SortingApplication
         {
             Console.WriteLine("These indices are swapped: ["+x+"] <-> ["+y+"]");
         }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            clearOldStuff();
+            theProblem = ProblemFactory.createTestProblem();
+            if (problemChangedListener != null)
+            {
+                problemChangedListener.onProblemChanged(theProblem.getDataForAlgorithm());
+            }
+            initializeGUI();
+        }
     }
 }
