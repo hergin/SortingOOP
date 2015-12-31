@@ -14,7 +14,7 @@ namespace SortingApplication.ProblemImplementations
 
         public TestProblem()
         {
-            int listElements = new Random().Next(10);
+            int listElements = new Random().Next(5, 10);
             for (int i = 0; i < listElements; i++) 
             {
                 theList.Add(new Tuple<string, int>("", new Random((int)System.Diagnostics.Stopwatch.GetTimestamp()).Next(0, 200)));
