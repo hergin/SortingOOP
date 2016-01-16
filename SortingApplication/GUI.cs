@@ -85,6 +85,17 @@ namespace SortingApplication
                         break;
                     case ParameterType.Slider:
                         // TODO
+                        var concreteTrackBar = new System.Windows.Forms.TrackBar();
+                        concreteTrackBar.Location = new System.Drawing.Point(201, location - 3);
+                        concreteTrackBar.Maximum = (int)item.Value.getPossibleValues()[1];
+                        concreteTrackBar.Minimum = (int)item.Value.getPossibleValues()[0];
+                        concreteTrackBar.Name = item.Key + "_Val";
+                        concreteTrackBar.Size = new System.Drawing.Size(100, 20);
+                        concreteTrackBar.TabIndex = 12;
+                        concreteTrackBar.Tag = item.Value;
+                        concreteTrackBar.ValueChanged += ConcreteTrackBar_ValueChanged;
+                        concreteTrackBar.Value = (int)item.Value.getValue();
+                        this.Controls.Add(concreteTrackBar);
                         break;
                     case ParameterType.CheckBox:
                         var concreteCheckbox = new System.Windows.Forms.CheckBox();
@@ -99,6 +110,12 @@ namespace SortingApplication
                 }
                 location += step;
             }
+        }
+
+        private void ConcreteTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            var tb = ((System.Windows.Forms.TrackBar)sender);
+            theAlgorithm.updateParam(((Model.Parameter)tb.Tag).getID(), tb.Value);
         }
 
         private void ConcreteCombobox_SelectedValueChanged(object sender, EventArgs e)

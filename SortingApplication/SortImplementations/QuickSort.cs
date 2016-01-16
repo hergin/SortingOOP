@@ -14,6 +14,7 @@ namespace SortingApplication
         {
             algoParams["Param1"] = new Model.Parameter("Param1", 5, new List<Object>() { 1, 2, 3, 4, 5 }, 3, Model.ParameterType.ComboBox);
             algoParams["Param2"] = new Model.Parameter("Param2", true, new List<Object>() { true, false }, true, Model.ParameterType.CheckBox);
+            algoParams["sliderParam"] = new Model.Parameter("sliderParam", 15, new List<Object>() { 10, 20 }, 10, Model.ParameterType.Slider);
         }
 
         public override string getName()
