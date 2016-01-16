@@ -6,20 +6,30 @@ using System.Threading.Tasks;
 
 namespace SortingApplication.Model
 {
+
+    public enum ParameterType { CheckBox, ComboBox, Slider, TextBox }
+
     public class Parameter
     {
 
         Object value;
         List<Object> possibleValues;
         Object defaultValue;
+        ParameterType paramType;
         string ID;
 
-        public Parameter(string id, Object val, List<Object> possibleVal, Object defVal)
+        public Parameter(string id, Object val, List<Object> possibleVal, Object defVal, ParameterType typ)
         {
             this.ID = id;
             this.value = val;
             this.possibleValues = possibleVal;
             this.defaultValue = defVal;
+            this.paramType = typ;
+        }
+
+        public ParameterType getParamType()
+        {
+            return paramType;
         }
 
         public string getID()

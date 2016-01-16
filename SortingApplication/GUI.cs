@@ -55,53 +55,50 @@ namespace SortingApplication
                 concreteParam.TabIndex = 6;
                 concreteParam.Text = item.Key;
                 this.Controls.Add(concreteParam);
-
-                // IF there are no possible values, it is just a textbox
-                if (item.Value.getPossibleValues() == null)
+                
+                switch (item.Value.getParamType())
                 {
-                    var concreteTextbox = new System.Windows.Forms.TextBox();
-                    concreteTextbox.Location = new System.Drawing.Point(201, location - 3);
-                    concreteTextbox.Name = item.Key + "_Val";
-                    concreteTextbox.Size = new System.Drawing.Size(100, 20);
-                    concreteTextbox.Tag = item.Value;
-                    concreteTextbox.TabIndex = 7;
-                    concreteTextbox.Text = (String)item.Value.getID();
-                    concreteTextbox.TextChanged += textBox_changed;
-                    this.Controls.Add(concreteTextbox);
-                }
-                // IF possible values contain 'true', it is a checkbox
-                else if (item.Value.getPossibleValues().Contains(true))
-                {
-                    var concreteCheckbox = new System.Windows.Forms.CheckBox();
-                    concreteCheckbox.Name = item.Key + "_Val";
-                    concreteCheckbox.Location = new System.Drawing.Point(201, location - 3);
-                    concreteCheckbox.Size = new System.Drawing.Size(100, 20);
-                    concreteCheckbox.Checked = (bool)item.Value.getValue();
-                    concreteCheckbox.Tag = item.Value;
-                    concreteCheckbox.CheckedChanged += checkbox_changed;
-                    this.Controls.Add(concreteCheckbox);
-                }
-                // ELSE it is a combobox
-                else
-                {
-                    var concreteCombobox = new System.Windows.Forms.ComboBox();
-                    concreteCombobox.FormattingEnabled = true;
-                    concreteCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-                    concreteCombobox.Items.AddRange(item.Value.getPossibleValues().ToArray());
-                    concreteCombobox.SelectedItem = item.Value.getValue();
-                    concreteCombobox.Location = new System.Drawing.Point(201, location - 3);
-                    concreteCombobox.Name = item.Key + "_Val";
-                    concreteCombobox.Tag = item.Value;
-                    concreteCombobox.Size = new System.Drawing.Size(100, 20);
-                    concreteCombobox.SelectedValueChanged += ConcreteCombobox_SelectedValueChanged;
-                    concreteCombobox.TabIndex = 12;
-                    this.Controls.Add(concreteCombobox);
+                    case ParameterType.TextBox:
+                        var concreteTextbox = new System.Windows.Forms.TextBox();
+                        concreteTextbox.Location = new System.Drawing.Point(201, location - 3);
+                        concreteTextbox.Name = item.Key + "_Val";
+                        concreteTextbox.Size = new System.Drawing.Size(100, 20);
+                        concreteTextbox.Tag = item.Value;
+                        concreteTextbox.TabIndex = 7;
+                        concreteTextbox.Text = (String)item.Value.getID();
+                        concreteTextbox.TextChanged += textBox_changed;
+                        this.Controls.Add(concreteTextbox);
+                        break;
+                    case ParameterType.ComboBox:
+                        var concreteCombobox = new System.Windows.Forms.ComboBox();
+                        concreteCombobox.FormattingEnabled = true;
+                        concreteCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                        concreteCombobox.Items.AddRange(item.Value.getPossibleValues().ToArray());
+                        concreteCombobox.SelectedItem = item.Value.getValue();
+                        concreteCombobox.Location = new System.Drawing.Point(201, location - 3);
+                        concreteCombobox.Name = item.Key + "_Val";
+                        concreteCombobox.Tag = item.Value;
+                        concreteCombobox.Size = new System.Drawing.Size(100, 20);
+                        concreteCombobox.SelectedValueChanged += ConcreteCombobox_SelectedValueChanged;
+                        concreteCombobox.TabIndex = 12;
+                        this.Controls.Add(concreteCombobox);
+                        break;
+                    case ParameterType.Slider:
+                        // TODO
+                        break;
+                    case ParameterType.CheckBox:
+                        var concreteCheckbox = new System.Windows.Forms.CheckBox();
+                        concreteCheckbox.Name = item.Key + "_Val";
+                        concreteCheckbox.Location = new System.Drawing.Point(201, location - 3);
+                        concreteCheckbox.Size = new System.Drawing.Size(100, 20);
+                        concreteCheckbox.Checked = (bool)item.Value.getValue();
+                        concreteCheckbox.Tag = item.Value;
+                        concreteCheckbox.CheckedChanged += checkbox_changed;
+                        this.Controls.Add(concreteCheckbox);
+                        break;
                 }
                 location += step;
             }
-
-
-
         }
 
         private void ConcreteCombobox_SelectedValueChanged(object sender, EventArgs e)
